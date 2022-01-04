@@ -1,6 +1,6 @@
 import React from "react";
 
-const SearchItem = ({ searchItem, setSearchItem }) => {
+const SearchItem = ({ searchItem, setSearchItem, handleSearchItem }) => {
   return (
     <form
       className="searchForm"
@@ -15,6 +15,7 @@ const SearchItem = ({ searchItem, setSearchItem }) => {
         role="searchbox"
         placeholder="Seach Item"
         value={searchItem}
+        onChange={(e)=>{handleSearchItem(e.target.value)}}
       />
     </form>
   );

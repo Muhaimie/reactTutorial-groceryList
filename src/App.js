@@ -7,6 +7,11 @@ import SearchItem from "./SearchItem";
 function App() {
   const [items, setItems] = useState(
     JSON.parse(localStorage.getItem("shoppingList"))
+    // [{
+    //   id:1,
+    //   checked:false,
+    //   item:"test"
+    // }]
   );
 
   const [newItem, setNewItem] = useState("");
@@ -41,7 +46,7 @@ function App() {
       item: item,
     };
 
-    const listItems = [...items, addedItem];
+    const listItems = [...items,addedItem];
     setAndSaveItems(listItems);
   };
 
@@ -54,17 +59,24 @@ function App() {
     setNewItem("");
   };
 
+  const handleSearchItem = (item)=>{
+
+    setSearchItem(item);
+  }
+
   return (
     <div className="App">
       <Header title="Grocery list" />
-      <SearchItem searchItem={searchItem} setSearchItem={setSearchItem} />
+      <SearchItem searchItem={searchItem} setSearchItem={setSearchItem} handleSearchItem={handleSearchItem} />
       <AddItem
         newItem={newItem}
         setNewItem={setNewItem}
         handleSubmit={handleSubmit}
       />
       <Content
-        items={items}
+        items={items.filter((item) => {
+          return item.item.toLowerCase().includes(searchItem.toLowerCase());
+        })}
         handleCheck={handleCheck}
         handleDelete={handleDelete}
       />

@@ -4,7 +4,8 @@ import LineItem from "./LineItem";
 const Content = ({ items, handleCheck, handleDelete }) => {
   return (
     <main>
-      {items.length ? (
+      {items.length ? 
+      (
         <ul>
           {items.map((item) => (
             <LineItem
